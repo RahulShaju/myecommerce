@@ -1,0 +1,91 @@
+
+
+  <%- include('../partials/adminheader.ejs') -%>
+
+<div class="text-center text-dark" style="height:100px ;">
+  
+</div>
+<form  class="form-header ml-5" action="" >
+  <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for users..." />
+  <button class="au-btn--submit" type="submit" value="search">
+      <i class="zmdi zmdi-search"></i>
+  </button>
+</form>
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+<table  class="table table-hover">
+  <!-- <div>
+    <form  class="form-header" action="" method="POST">
+      <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+      <button class="au-btn--submit" type="submit">
+          <i class="zmdi zmdi-search"></i>
+      </button>
+  </form>
+  </div>
+  <br> -->
+  <h1 class="text-center">User List</h1>
+  <hr>
+    <thead>
+      
+      <tr>
+        <th scope="col">Sl No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email ID</th>
+        <th scope="col">Mobile Number</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% if(users.length > 0){ %>
+       <% for(let i=1;i<=users.length;i++){
+          %>
+      <tr>
+        <th scope="row" ><%= i %></th>
+        <td><%= users[i-1].name %></td>
+       
+        <td><%= users[i-1].email %></td>
+        <td><%= users[i-1].mobile %></td>
+        
+        
+        
+       <% if(users[i-1].is_verified){ %>
+        <td>active </td>
+        <td class="text-center"><a href="/admin/blockuser?id=<%=users[i-1]._id %>"><button  class="btn btn-bg-danger text-white bg-danger ">Block</button></a></td>
+        
+        
+        <%}
+        else { %>
+          <td>inactive</td>
+          <td class="text-center"><a href="/admin/unblockuser?id=<%=users[i-1]._id %>"><button  class="btn btn-bg-danger text-white bg-danger ">Unblock</button></a></td>
+        <% } %>
+
+      </tr>
+      <%
+    }
+  } else{%>
+<h3 style="color: red;">user not found </h3>
+  <%}
+      %>
+    </tbody>
+    
+  </table>
+  <div class="d-flex justify-content-center container ">
+    <% 
+    for(let j=1;j <= totalpages;j++){
+        %>
+    <a href="/admin/userlist?page=<%= j %>"><button  type="submit"  class=" btn btn-dark text-white ml-2 " style="border-radius: 40px; width: 40px;height: 40px;"> <%= j %> </button></a>
+        <%
+    }
+    %>
+</div>
+
+  </div>
+  </div>
+  </div>
+  
+    
+  
+    <%- include('../partials/adminfooter.ejs') %>

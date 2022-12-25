@@ -1,0 +1,85 @@
+<%- include('../partials/adminheader.ejs') %>
+
+
+  <br><br><br><br>
+  <!-- Sales Chart Start -->
+<div class="container-fluid pt-4 px-4c">
+  <div class="row d-flex justify-content-center ">
+    <!-- <div class="col-sm-12 col-xl-6">
+      <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <h6 class="mb-0">Worldwide Sales</h6>
+          <a href="">Show All</a>
+        </div>
+        <canvas id="worldwide-sales"></canvas>
+      </div>
+    </div> -->
+    <div class="col-sm-12 col-xl-6 justify-content-center">
+      <div class="bg-gray rounded h-100 p-4 justify-content-center">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <input type="hidden" id="category" value="<%= category %>">
+          <input type="hidden" id="count" value="<%= count %>">
+          <h3 class="text-primary m-auto">Categories</h3>
+
+        </div>
+        <!-- <canvas id="pie-chartt"></canvas> -->
+        <canvas  id="myChart"></canvas>
+
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script type="text/javascript" >
+        const count = document.getElementById('count')
+        // console.log('type:',typeof(count.value),' value:',count.value);
+        const countArray = count.value.split(',')
+        // console.log('type:',typeof(countArray),'values,',countArray);
+
+        const category = document.getElementById('category')
+        // console.log(' value:',category.value);
+        const categoryArray = category.value.split(',')
+        // console.log('values,',categoryArray);
+
+        const ctx = document.getElementById('myChart');
+        
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: categoryArray,
+            datasets: [{
+              label: 'Orders:',
+              data: countArray,
+              borderWidth: 1
+            }]
+          },
+          // options: {
+          //   scales: {
+          //     y: {
+          //       beginAtZero: true
+          //     }
+          //   }
+          // }
+        });
+      </script>                   
+  </div>
+    <!-- <div class="col-sm-12 col-xl-6">
+      <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <h6 class="mb-0">Salse & Revenue</h6>
+          <a href="">Show All</a>
+        </div>
+        <canvas id="salse-revenue"></canvas>
+      </div>
+    </div> -->
+  </div>
+</div>
+<!-- Sales Chart End -->
+
+<!-- <a href='/admin/insertproduct'><button  class="bg-secondary text-white" style="border: 0; border-radius: 5px; width: 120px; height: 40px;">Add Product</button></a>
+<a href="/admin/viewproduct" class="mt-3"><button class="bg-secondary text-white" style="border: 0; border-radius: 5px; width: 120px; height: 40px;">Product List</button></a>
+<a href="/admin/userlist" class="mt-3"><button class="bg-secondary text-white" style="border: 0; border-radius: 5px; width: 120px; height: 40px;">Users List</button></a>
+</div>
+  -->
+  
+  <%- include('../partials/adminfooter.ejs') %>
+
+
+

@@ -1,0 +1,102 @@
+<%- include('../partials/userhomeheader.ejs') -%>
+<br><br><br><br>
+        
+        <div class="breadcrumb-area bg-dark ">
+            <div class="container ">
+                <div class="breadcrumb-content text-center ">
+                    <div class="breadcrumb-content text-center">
+                        <i class="fa-solid fa-heart"f style="font-size: 40px;color: red;"></i>
+                       <h2 class="text-danger" style="font-weight:bold;">WISHLIST</h2>
+                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="cart-main-area pt-115 pb-120">
+          
+            <div class="container">
+                <% if(empty === false) {%>
+                <h3 class="cart-page-title">Your wishlist is ready <i class="fa-solid fa-face-smile"></i></h3>
+                <%} else{%>
+                    <h2 class="cart-page-title text-dark text-center" style="font-weight: bold;">Your wishlist is empty</h2>
+                    <h1 class="text-center"><i class="fa-solid fa-face-frown text-warning" style="font-size: 60px;"></i></h1><br>
+                    <div class="text-center">
+                        <a href="/product-store"><button class="btn-dark text-white" style="width:150px;height:60px;border-radius:60px; font-size: 20px;">Explore</button></a>
+                        </div>
+                <%}%>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <form action="#">
+                            <div class="table-content table-responsive cart-table-content">
+                                <% if(empty === false){ %>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th></th>
+                                            
+                                            <th>action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <% for(let key of wishProducts.items){%>
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img src="/productImages/<%=key.productId.image %>" width="100vw" height="100vh" alt=""></a>
+                                            </td>
+                                            <td class="product-name"><a href="#"><%=key.productId.product%></a></td>
+                                            <td class="product-price-cart"><span class="amount">₹.<%=key.productId.price %></span></td>
+                                           
+                    
+                                            <td class="product-wishlist-cart">
+                                                <a class="btn btn-dark" style="border-radius: 40px; width:100px; height:40px;"  href="/wishlist-to-cart?id=<%=key.productId._id %>">add to cart</a>
+                                            </td>
+                                            <td><a href="/delete-wish?id=<%=key.productId._id %>"><i class="fa-solid fa-trash text-danger" style="font-size: 30px;"></i></a></td>
+                                        </tr>
+                                        <% } 
+                                    }  %>
+                                       
+                                           
+                                        <!-- <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img src="assets/images/cart/cart-2.jpg" alt=""></a>
+                                            </td>
+                                            <td class="product-name"><a href="#">Norda Simple Backpack</a></td>
+                                            <td class="product-price-cart"><span class="amount">$150.00</span></td>
+                                            <td class="product-quantity pro-details-quality">
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal">$150.00</td>
+                                            <td class="product-wishlist-cart">
+                                                <a href="#">add to cart</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img src="assets/images/cart/cart-1.jpg" alt=""></a>
+                                            </td>
+                                            <td class="product-name"><a href="#">Simple Black T-Shirt </a></td>
+                                            <td class="product-price-cart"><span class="amount">$170.00</span></td>
+                                            <td class="product-quantity pro-details-quality">
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal">$170.00</td>
+                                            <td class="product-wishlist-cart">
+                                                <a href="#">add to cart</a>
+                                            </td>
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../partials/userfooter.ejs') -%>

@@ -1,0 +1,101 @@
+<%- include('../partials/adminheader.ejs') -%>
+
+
+<div class="text-center mt-5" style="height: 100px;">
+
+</div>
+<div class="container p-3 mt-3" style="width: 100%; height:100%; border: solid 1px black;border-radius: 5px;">
+<form id="gform" action="" method="post" enctype="multipart/form-data">
+  <h1 class="text-center">Add Product</h1>
+  <hr>
+    <div class="form-group" style="width: 50%;">
+        <label for="exampleInputEmail1" style="font-weight: bold;">Product Name</label>
+        <input type="text" name="prodname" class="form-control bg-light" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Product Name" required>
+        
+      </div>
+      
+    
+        <div class="form-group"  style="width: 50%;">
+          <label for="exampleInputEmail1" style="font-weight: bold;">Product Image 1</label>
+          <input  type="file" name="gimage"   class="form-control bg-light" id="exampleInputEmail"  placeholder="choose product image"   >
+          
+        </div>
+        
+        <div class="form-group "  style="width: 50%;">
+            <label for="exampleInputEmail1" style="font-weight: bold;">Product Category</label>
+            <!-- <input type="text" name="category" class="form-control" id="exampleInputEmail1"  placeholder="Select" required> -->
+            <select id="category" name="category" style="width: 100%; height: 40px; border: 1px gray; color: gray;" >
+              <option selected>Select</option>
+              <% for(let i=1;i<=category.length;i++){%>
+              <option value="<%=category[i-1].gendercategory %>"><%=category[i-1].gendercategory %></option>
+              <%}%>
+              <!-- <option value="WOMEN">WOMEN</option>
+              <option value="KIDS">KIDS</option> -->
+              
+            </select>
+          </div>
+        <div class="form-group"  style="width: 50%;">
+          <label for="" style="font-weight: bold;">Brand</label>
+          <br>
+          <!-- <input type="text" name="brand" class="form-control bg-light" id="exampleInputPassword1" placeholder="Brand Name" required> -->
+          <select id="brand" name="brand" style="width: 100%; height: 40px; border-radius: 5px; border: 1px gray; color: gray;">
+            <option ></option>
+            <option value="Puma">Puma</option>
+            <option value="Adidas">Adidas</option>
+            <option value="Nike">Nike</option>
+            <option value="Levis">Levis</option>
+          </select>
+        </div>
+        <div class="form-group"  style="width: 50%;">
+          <label for="" style="font-weight: bold;">Size</label>
+          <br>
+          <!-- <input type="text" name="brand" class="form-control bg-light" id="exampleInputPassword1" placeholder="Brand Name" required> -->
+          <select id="" name="size" style="width: 100%; height: 40px; border-radius: 5px; border: 1px gray; color: gray;">
+            <option ></option>
+            <option value="Puma">XS</option>
+            <option value="Adidas">S</option>
+            <option value="Nike">M</option>
+            <option value="Levis">L</option>
+            <option value="Levis">XL</option>
+            <option value="Levis">XXL</option>
+          </select>
+        </div>
+        <div class="form-group"  style="width: 50%;">
+            <label for="exampleInputPassword1" style="font-weight: bold;">Price</label>
+            <input type="text" name="price" class="form-control bg-light" id="exampleInputPassword1" placeholder="enter the amount" required>
+          </div>
+          <div class="form-group"  style="width: 50%;">
+            <label for="exampleInputPassword1" style="font-weight: bold;">Quantity</label>
+            <input type="text" name="qty" class="form-control bg-light" id="exampleInputPassword1" placeholder="enter the quantity " required>
+          </div>
+        <br>
+        <button type="submit" class="btn btn-secondary">Add</button>
+        </form>
+        </div>
+       <script>
+      //    submitHandler:function(form){
+      //     //form.submit();
+      //     $("#gform").submit((e)=>{
+      //       e.preventDefault()
+      //       $.ajax({
+      //           url:"https://script.google.com/macros/s/AKfycbwtfxDuB549hnZLHp1BLNrJs0SJmZJatNNV2YbyOSGaMmW7pD2eGotLJeYbgq3RJE5_2A/exec",
+      //           data:$("#gform").serialize(),
+      //           method:"post",
+      //           success:function (response){
+      //               alert("Form submitted successfully")
+      //               window.location.reload()
+      //               //window.location.href="https://google.com"
+      //           },
+      //           error:function (err){
+      //               alert("Something Error")
+          
+      //           }
+      //       })
+      //     })
+      // }
+       </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<%- include('../partials/adminfooter.ejs') %>

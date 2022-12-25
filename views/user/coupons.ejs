@@ -1,0 +1,34 @@
+<%- include('../partials/userhomeheader.ejs') -%>
+
+  <br /><br /><br /><br />
+  <div class="breadcrumb-area bg-dark">
+    <div class="container">
+      <div class="breadcrumb-content text-center">
+        <h2 style="font-weight: bold" class="text-danger">Your Coupons</h2>
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid p-5">
+    <div class="row  ">
+        <%for(let i=1;i<= offer.length;i++){%>
+        <div class="col-5 col-md-2 m-3 ">
+            
+<div class="card " style="border-radius: 20px; height:auto;width: 18rem; border: solid 4px black;">
+    <img class="card-img-top img-rounded" style="width:100%;height:50%;object-fit: contain; border-top-left-radius:20px;border-top-right-radius: 20px;" src="/productImages/<%=offer[i-1].image%>" alt="Card image cap">
+    <div class="card-body text-center ">
+      <h3 class="card-title" style="font-weight: bold;color: yellowgreen;"><%=offer[i-1].type%></h3>
+      <h3 class="card-text" style="font-weight: bold">Coupon code : <%=offer[i-1].name%></h3>
+      <h3 class="card-text" style="font-weight: bold"> <%=offer[i-1].discount%>% OFF</h3>
+      
+      <a href="/view-cart?id=<%=offer[i-1].name%>" class="btn btn-success" style="border-radius: 20px;font-weight: bold;" >Apply Coupon</a>
+      
+    </div>
+  </div>
+  </div>
+  <%}%>
+  </div>
+</div>
+
+
+<%- include('../partials/userfooter.ejs') -%>
