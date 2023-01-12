@@ -14,7 +14,12 @@
     }
     </style>
 
-<%- include('../partials/userhomeheader.ejs') -%>
+<% if(isLoggedIn){%>
+    <%- include('../partials/userhomeheader.ejs') -%>
+    <% } 
+    else { %>
+        <%- include('../partials/userlandingheader.ejs') -%>
+    <% } %>
 
 <br>
 <br>
