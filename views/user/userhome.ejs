@@ -17,7 +17,7 @@ else { %>
                 <div class="single-hero-slider single-animation-wrap">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col-6">
                                 <div class="hero-slider-content-1 hero-slider-content-1-pt-1 slider-animated-1">
                                     <h4 class="animated"><%=banner[i-1].btitle %></h4>
                                     <h1 class="animated">Fashionable <br>T-shirts</h1>
@@ -27,7 +27,7 @@ else { %>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col-lg-6 col-md-6 col-sm-3">
                                 <div class="hero-slider-img-1 slider-animated-1">
                                     <img class="animated" src="/productImages/<%=banner[i-1].bimage %>" alt="">
                                 </div>
@@ -38,7 +38,7 @@ else { %>
                 <div class="single-hero-slider single-animation-wrap">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col-6">
                                 <div class="hero-slider-content-1 hero-slider-content-1-pt-1 slider-animated-1">
                                     <h4 class="animated"><%=banner[i-1].btitle %></h4>
                                     <h1 class="animated">Explore <br>ne fashions</h1>
@@ -48,7 +48,7 @@ else { %>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col-6">
                                 <div class="hero-slider-img-1 slider-animated-1">
                                     <img class="animated" src="/productImages/<%=banner[i-1].bimage %>"  alt="">
                                 </div>
@@ -149,9 +149,11 @@ else { %>
                        
                         <div class="row" >
                        <% if(product.length>0){
+
                         for(let i=1;i<=product.length;i++){%>
+                            
                            
-                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" >
+                            <div class="col-6 col-md-4" >
                                 
                         
                                 <div class="single-product-wrap mb-35 " style="border-radius: 12px;">
@@ -209,6 +211,7 @@ else { %>
                                     </div>
                                 </div>
                             </div>
+                           
                        <% }
                     }%>
                         </div>
