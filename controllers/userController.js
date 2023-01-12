@@ -253,6 +253,7 @@ const userLogout = async (req, res) => {
 };
 const viewProductDetails = async (req, res) => {
   try {
+    const userSession = req.session
     const id = req.query.id;
     const productData = await Product.findById({ _id: id },{is_deleted:0});
     const relatedProduct = await Product.find({is_deleted:0});
