@@ -267,7 +267,7 @@ const viewProductDetails = async (req, res) => {
     res.render("user/viewproductdetails", {
       product: productData,
       relproduct: relatedProduct,
-      isLoggedIn: true,
+      isLoggedIn: false,
     })
   }
  } catch (error) {
