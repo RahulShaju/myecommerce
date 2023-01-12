@@ -33,10 +33,7 @@ userRouter.get('/view-wishlist',userController.viewWishlist)
 userRouter.get('/wishlist-to-cart',userController.wishlistToCart)
 userRouter.get('/delete-wish',userController.deleteWish) 
 
-// userRouter.get('/add-address',userController.addAddress)
-
 userRouter.post("/edit-quantity", userController.editQty);
-
 userRouter.get("/checkout", auth.isLogin, userController.loadCheckout);
 userRouter.post("/checkout", userController.storeOrder);
 userRouter.get("/order-success", auth.isLogin, userController.orderSuccess);

@@ -53,7 +53,7 @@ const loadLanding = async (req, res) => {
     limit = 8;
     const productData = await Product.find({
       is_deleted: 0,
-      $or: [
+      $and: [
         { category: { $regex: ".*" + search + ".*", $options: "i" } },
         { brand: { $regex: ".*" + search + ".*", $options: "i" } },
       ]
@@ -198,7 +198,6 @@ const userHome = async (req, res) => {
           const userSession = req.session;
           userSession.userId = userData._id;
           appliedCoupon = 0;
-          // isLoggedIn = true;
           console.log(userSession.userId);
           res.redirect("/");
         } else {
@@ -271,6 +270,10 @@ const productStore = async (req, res) => {
   try {
     const userSession = req.session;
      page =1
+     var search = "";
+     if (req.query.search) {
+       search = req.query.search;
+     }
     if (req.query.page) {
       page = req.query.page;
     }
@@ -279,7 +282,12 @@ const productStore = async (req, res) => {
      const categoryName = req.query.id
     console.log(categoryName)
     const count = await Product.find({is_deleted:0}).countDocuments();
-    const productData = await Product.find({is_deleted:0})
+    const productData = await Product.find({is_deleted:0,
+      $or: [
+        { product: { $regex: ".*" + search + ".*", $options: "i" } },
+        { category: { $regex: ".*" + search + ".*", $options: "i" } },
+        { brand: { $regex: ".*" + search + ".*", $options: "i" } },
+      ]})
       .limit(limit * 1)
       .skip((page - 1) * limit);
       console.log(productData)
@@ -387,52 +395,14 @@ const storeAddress = async(req,res)=>{
 }
 const deleteAddress = async (req,res)=>{
   try {
-    const id = req.query._id
+    const id = req.query.id
   const addressData = await Address.findByIdAndDelete({_id:id})
   res.redirect("/profile")
   } catch (error) {
     console.log(error.message)
   }
 }
-// const selectAddress = async (req,res)=>{
-//   try {
-//     const id = req.query.id
-//     if (noCoupon == false) {
-//       const userSession = req.session;
-//       const userData = await User.findById({ _id: userSession.userId });
-//       const completeUser = await userData.populate("cart.items.productId");
-//       const addressData = await Address.findById({_id:id})
-//       console.log(completeUser);
-//       console.log("have coupon");
-//       res.render("user/checkout", {
-//         cartProducts: completeUser.cart,
-//         offer: offer,
-//         couponTotal: couponTotal,
-//         address:addressData,
-//         noCoupon: noCoupon,
-//         id
-//       });
-//     } else {
-//       const userSession = req.session;
-//       const userData = await User.findById({ _id: userSession.userId });
-//       const completeUser = await userData.populate("cart.items.productId");
-//       const addressData = await Address.findById({_id:id})
-//       console.log(completeUser);
-//       console.log("no coupon");
-//       res.render("user/checkout", {
-//         cartProducts: completeUser.cart,
-//         noCoupon: noCoupon,
-//         couponTotal: couponTotal,
-//         offer: offer,
-//         address:addressData,
-//         id
-//       });
-//     }
-    
-//   } catch (error) {
-//     console.log(error.message)
-//   }
-// }
+
 const addToCart = async (req, res) => {
   try {
     const userSession = req.session;
@@ -447,8 +417,6 @@ const addToCart = async (req, res) => {
    
     res.json({status:true})
     
-
-    // res.redirect("/");
   } catch (error) {
     console.log(error.message);
   }
@@ -596,10 +564,6 @@ const deleteWish = async (req, res, next) => {
     const userSession = req.session;
     const userData = await User.findById({ _id: userSession.userId });
     userData.removeFromWishlist(productId);
-    // const productData = await Product.findByIdAndUpdate(
-    //   { _id: productId },
-    //   { $set: { in_wishlist: 0 } }
-    // );
     res.redirect("/view-wishlist");
   } catch (error) {
     console.log(error.message);
@@ -651,14 +615,14 @@ const loadCheckout = async (req, res) => {
     console.log(error.message);
   }
 };
-//store order data
+
 const storeOrder = async (req, res) => {
   try {
     const userSession = req.session;
 
     const userData = await User.findById({ _id: userSession.userId });
     const completeUser = await userData.populate("cart.items.productId");
-    // userData.cart.totalprice = couponTotal;
+    
     noCoupon = true;
     updatedTotal = await userData.save();
     console.log("CompleteUser: ", completeUser);
@@ -788,11 +752,11 @@ const returnProduct = async (req, res) => {
     userSession = req.session;
    
       const id = req.query.id;
-      // console.log('id',new String(id));
+      
       const productOrderData = await Orders.findById({
         _id: currentOrder,
       });
-      // console.log('productOrderData.products.item[i].productId',new String(productOrderData.products.item[0].productId));
+     
       const productData = await Product.findById({ _id: id });
       if (productOrderData) {
         for (let i = 0; i < productOrderData.products.items.length; i++) {
